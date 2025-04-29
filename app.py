@@ -1,34 +1,30 @@
 import streamlit as st
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-import chromedriver_autoinstaller
+import undetected_chromedriver as uc
 import time
 
 def create_driver():
-    # Install ChromeDriver yang cocok secara otomatis
-    chromedriver_autoinstaller.install()
-    
-    options = Options()
-    options.add_argument('--headless')  # Jalankan dalam mode headless
+    options = uc.ChromeOptions()
+    options.add_argument('--headless')
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-dev-shm-usage')
     options.add_argument('--disable-gpu')
-    
-    driver = webdriver.Chrome(options=options)
+    options.add_argument('--disable-software-rasterizer')
+
+    driver = uc.Chrome(options=options)
     return driver
 
 def scrape_title(url):
     driver = create_driver()
     driver.get(url)
-    time.sleep(2)  # Tunggu 2 detik biar halaman load
+    time.sleep(2)
     
-    title = driver.title  # Ambil title halaman
+    title = driver.title
     driver.quit()
     return title
 
-st.title("🔎 Streamlit + Selenium Demo")
+st.title("🔎 Streamlit + Selenium (Undetected Chrome)")
 
-url = st.text_input("Masukkan URL untuk scraping:")
+url = st.text_input("Masukkan URL:")
 
 if st.button("Scrape Title"):
     if url:
@@ -36,4 +32,4 @@ if st.button("Scrape Title"):
             title = scrape_title(url)
             st.success(f"Judul Halaman: {title}")
     else:
-        st.warning("Mohon masukkan URL terlebih dahulu.")
+        st.warning("Masukkan URL terlebih dahulu.")
