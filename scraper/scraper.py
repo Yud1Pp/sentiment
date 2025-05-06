@@ -52,7 +52,7 @@ class TokopediaScraper:
     def scrape_and_analyze(self):
         driver = self.create_driver()
         data_review = []
-        st.write(driver.find_element(By.TAG_NAME, "body").get_attribute("innerHTML"))
+        st.write("Hallo, sedang mengambil data review...")
         try:
             driver.set_window_size(1300, 800)
             driver.get(self.url)
