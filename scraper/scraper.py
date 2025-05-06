@@ -12,18 +12,8 @@ class TokopediaScraper:
         self.max_per_rating = max_per_rating
         self.isCheckbox = False
         self.cntCheckEnb = 0
-
-    def create_driver(self):
-        options = Options()
-        options.add_argument("--headless")
-        options.add_argument("--no-sandbox")
-        options.add_argument("--disable-dev-shm-usage")
-        options.add_argument("--disable-blink-features=AutomationControlled")
-        options.add_argument("user-agent=Mozilla/5.0")
-        service = Service("chromedriver.exe")
-        return webdriver.Chrome(service=service, options=options)
     
-    def create_driver():
+    def create_driver(self):
         options = Options()
         options.add_argument("--headless")
         options.add_argument("--no-sandbox")
