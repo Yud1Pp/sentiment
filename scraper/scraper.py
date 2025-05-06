@@ -49,6 +49,7 @@ class TokopediaScraper:
         return None
 
     def scrape_and_analyze(self):
+        st.write("haiii")
         driver = self.create_driver()
         data_review = []
         try:
@@ -58,7 +59,6 @@ class TokopediaScraper:
             test = driver.find_element(By.CLASS_NAME, "css-11hzwo5").get_attribute("outerHTML")
             st.write(f"Url: {self.url}")
             st.write(f"hallo: {test}")
-            st.write("haiii")
             
 
             # Tutup popup jika muncul
