@@ -56,7 +56,9 @@ class TokopediaScraper:
             driver.get(self.url)
             time.sleep(3)
             test = driver.find_element(By.CLASS_NAME, "css-11hzwo5").get_attribute("outerHTML")
+            st.write(f"Url: {self.url}")
             st.write(f"hallo: {test}")
+            
 
             # Tutup popup jika muncul
             try:
