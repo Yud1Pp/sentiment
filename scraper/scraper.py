@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
+import streamlit as st
 
 class TokopediaScraper:
     def __init__(self, url, max_per_rating=50):
@@ -51,6 +52,7 @@ class TokopediaScraper:
     def scrape_and_analyze(self):
         driver = self.create_driver()
         data_review = []
+        st.write(driver.find_element(By.TAG_NAME, "body").get_attribute("innerHTML"))
         try:
             driver.set_window_size(1300, 800)
             driver.get(self.url)
