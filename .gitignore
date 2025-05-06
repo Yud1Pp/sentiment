@@ -2,6 +2,3 @@ chromedriver.exe
 scraper/scrapper1.py
 coba.py
 test.py
-scraper/__pycache__/
-lda/__pycache__/
-sentiment/__pycache__/
