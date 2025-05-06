@@ -52,11 +52,11 @@ class TokopediaScraper:
     def scrape_and_analyze(self):
         driver = self.create_driver()
         data_review = []
-        st.write("Hallo, sedang mengambil data review...")
         try:
             driver.set_window_size(1300, 800)
             driver.get(self.url)
             time.sleep(3)
+            st.write(driver.find_element(By.CLASS_NAME, "css-11hzwo5").get_attribute("outerHTML"))
 
             # Tutup popup jika muncul
             try:
