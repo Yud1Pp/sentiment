@@ -21,6 +21,7 @@ if st.button("Mulai Scraping & Analisis") and product_url:
     with st.spinner("Mengambil data review dan melakukan analisis sentimen..."):
         scraper = TokopediaScraper(product_url)
         reviews = scraper.scrape_and_analyze()
+        st.write(reviews)
 
         if not reviews:
             st.warning("Tidak ada review ditemukan.")
