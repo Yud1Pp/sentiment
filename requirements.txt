@@ -1,2 +1,9 @@
 streamlit
 selenium
+pandas
+matplotlib
+seaborn
+wordcloud
+scikit-learn
+Sastrawi
+transformers
