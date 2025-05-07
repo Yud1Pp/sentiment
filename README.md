@@ -62,6 +62,61 @@ streamlit run app.py
 5. **Akses aplikasi:**
    Buka browser dan akses `http://localhost:8501`
 
+Berikut adalah tambahan bagian untuk dokumentasi di README Anda terkait instalasi **ChromeDriver** agar scraping dengan Selenium dapat berjalan dengan baik:
+
+---
+
+## 🔧 Instalasi ChromeDriver
+
+Untuk menjalankan Selenium, Anda perlu menginstal **ChromeDriver** yang sesuai dengan versi Google Chrome yang terpasang di komputer Anda. Berikut langkah-langkahnya:
+
+1. **Periksa versi Chrome Anda:**
+
+   Buka Google Chrome dan akses alamat berikut di browser:
+
+   ```
+   chrome://settings/help
+   ```
+
+   Catat versi Chrome Anda, misalnya: `114.0.5735.90`.
+
+2. **Download ChromeDriver yang sesuai:**
+
+   Kunjungi situs resmi berikut:
+   [https://chromedriver.chromium.org/downloads](https://chromedriver.chromium.org/downloads)
+
+   Pilih versi yang sesuai dengan Chrome Anda, lalu unduh file untuk sistem operasi yang Anda gunakan (Windows, Linux, atau macOS).
+
+3. **Ekstrak dan simpan ChromeDriver:**
+
+   Setelah diunduh, ekstrak file dan simpan di folder yang mudah diakses, misalnya:
+
+   * `C:\chromedriver\chromedriver.exe` (Windows)
+   * `/usr/local/bin/chromedriver` (Linux/macOS)
+
+4. **Ubah variabel `servicePath` di `app.py`:**
+
+   Buka file `app.py` dan cari baris yang memuat `Service(...)` dari Selenium. Ganti path dengan lokasi ChromeDriver Anda.
+
+   Contoh di Windows:
+
+   ```python
+   servicePath = Service('C:/chromedriver/chromedriver.exe')
+   ```
+
+   Contoh di Linux/macOS:
+
+   ```python
+   servicePath = Service('/usr/local/bin/chromedriver')
+   ```
+
+5. **Pastikan ChromeDriver dapat dijalankan:**
+
+   Coba jalankan perintah berikut di terminal untuk memastikan ChromeDriver bisa diakses:
+
+   ```bash
+   chromedriver --version
+   ```
 ---
 
 ## 📥 Cara Menggunakan
