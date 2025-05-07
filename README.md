@@ -96,7 +96,7 @@ Untuk menjalankan Selenium, Anda perlu menginstal **ChromeDriver** yang sesuai d
 
 4. **Ubah variabel `servicePath` di `app.py`:**
 
-   Buka file `app.py` dan cari baris yang memuat `Service(...)` dari Selenium. Ganti path dengan lokasi ChromeDriver Anda.
+   Buka file `app.py` dan cari baris yang memuat variabel servicePath. Ganti path dengan lokasi ChromeDriver Anda.
 
    Contoh di Windows:
 
