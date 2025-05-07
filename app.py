@@ -23,7 +23,7 @@ def create_driver():
 def take_screenshot(url, filename="screenshot.png"):
     driver = create_driver()
     driver.get(url)
-    time.sleep(2)
+    time.sleep(10)
     # WebDriverWait(driver, 5).until(
     #     EC.presence_of_element_located((By.CLASS_NAME, "css-11hzwo5"))
     # ).find_element(By.TAG_NAME, "button").click()
