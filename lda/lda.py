@@ -30,7 +30,7 @@ def perform_lda(texts, num_topics=5, num_words=10):
     Melakukan Latent Dirichlet Allocation (LDA) untuk mengidentifikasi topik dari teks.
     """
     # Vektorisasi teks
-    vectorizer = CountVectorizer(stop_words='english')
+    vectorizer = CountVectorizer(stop_words=stopwords)
     dtm = vectorizer.fit_transform(texts)
     
     # LDA model

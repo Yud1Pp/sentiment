@@ -12,20 +12,9 @@ class TokopediaScraper:
         self.url = url
         self.max_per_rating = max_per_rating
         self.isCheckbox = False
-        self.cntCheckDis = 0
-
-    def create_driver(self):
-        options = Options()
-        options.add_argument("--headless")
-        options.add_argument("--no-sandbox")
-        options.add_argument("--disable-dev-shm-usage")
-        options.add_argument("--disable-blink-features=AutomationControlled")
-        options.add_argument("user-agent=Mozilla/5.0")
-        service = Service("chromedriver.exe")
-        return webdriver.Chrome(service=service, options=options)
+        self.cntCheckEnb = 0
     
-    """
-    def create_driver():
+    def create_driver(self):
         options = Options()
         options.add_argument("--headless")
         options.add_argument("--no-sandbox")
@@ -39,7 +28,6 @@ class TokopediaScraper:
         driver = webdriver.Chrome(service=service, options=options)
         
         return driver
-    """
 
     def click_checkbox(self, driver, rating):
         labels = driver.find_elements(By.CSS_SELECTOR, "label.checkbox")
@@ -51,6 +39,7 @@ class TokopediaScraper:
                     try:
                         checkbox_input = label.find_element(By.TAG_NAME, "input")
                         if checkbox_input.get_attribute("disabled") is not None:
+                            print(f"Rating {rating} checkbox dalam kondisi disabled.")
                             return None  # Jika disabled, skip checkbox ini
                     except:
                         continue
@@ -59,15 +48,18 @@ class TokopediaScraper:
                 continue
         return None
 
-
     def scrape_and_analyze(self):
+        st.write("haiii")
         driver = self.create_driver()
         data_review = []
-        
         try:
             driver.set_window_size(1300, 800)
             driver.get(self.url)
             time.sleep(3)
+            test = driver.find_element(By.CLASS_NAME, "css-11hzwo5").get_attribute("outerHTML")
+            st.write(f"Url: {self.url}")
+            st.write(f"hallo: {test}")
+            
 
             # Tutup popup jika muncul
             try:
@@ -93,11 +85,14 @@ class TokopediaScraper:
             try:
                 tombol_urutkan = driver.find_element(By.CSS_SELECTOR, 'button[data-testid="reviewSorting"]')
                 if tombol_urutkan.is_enabled():
+                    print("urutkan terpencet")
                     # Scroll dan tunggu tombol bisa diklik
                     driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", tombol_urutkan)
                     WebDriverWait(driver, 5).until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'button[data-testid="reviewSorting"]')))
                     tombol_urutkan.click()
+                    
                     tombol_terbaru = driver.find_element(By.CSS_SELECTOR, 'button[data-item-text="Terbaru"]')
+                    print(tombol_terbaru.get_attribute("outerHTML"))
                     if tombol_terbaru.is_enabled():
                     # Scroll dan tunggu tombol bisa diklik
                         driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", tombol_terbaru)
@@ -112,7 +107,7 @@ class TokopediaScraper:
                 if not checkbox:
                     print(f"Rating {rating} tidak tersedia di checkbox.")
                     self.isCheckbox = False
-                    self.cntCheckDis += 1
+                    self.cntCheckEnb += 1
                     continue  # Jika checkbox untuk rating ini tidak ada, lanjutkan ke rating berikutnya
                 
                 try:
@@ -182,7 +177,7 @@ class TokopediaScraper:
                     pass
             
             try:
-                if self.cntCheckDis == 5:
+                if self.cntCheckEnb == 5:
                     reviews = driver.find_elements(By.CSS_SELECTOR, "article.css-15m2bcr")
                     if reviews:
                         for el in reviews:
