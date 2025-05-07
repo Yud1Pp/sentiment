@@ -68,7 +68,7 @@ streamlit run app.py
 
 1. Buka aplikasi di browser.
 2. Masukkan URL produk Tokopedia, misalnya:
-   `https://www.tokopedia.com/tokokingonline/1-ball-mamypoko-pants-s38-m32-l28-xl26-xxl24-king-online-1729623896722213308?t_id=1746606199417&t_st=1&t_pp=homepage&t_efo=pure_goods_card&t_ef=homepage&t_sm=rec_homepage_outer_flow&t_spt=homepage`
+(https://www.tokopedia.com/tokokingonline/1-ball-mamypoko-pants-s38-m32-l28-xl26-xxl24-king-online-1729623896722213308?t_id=1746606199417&t_st=1&t_pp=homepage&t_efo=pure_goods_card&t_ef=homepage&t_sm=rec_homepage_outer_flow&t_spt=homepage)
 3. Klik tombol **"Mulai Scraping & Analisis"**.
 4. Tunggu proses scraping dan analisis selesai.
 5. Lihat hasil pada tabel dan visualisasi.
