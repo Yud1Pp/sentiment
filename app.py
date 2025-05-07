@@ -2,6 +2,7 @@ import streamlit as st
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
 import time
 
 def create_driver():
@@ -22,7 +23,7 @@ def scrape_title(url):
     driver.get(url)
     time.sleep(2)
     
-    title = driver.title
+    test = driver.find_element(By.CSS_SELECTOR, 'span[id="select2-slsposition-container"]')
     driver.quit()
     return title
 
