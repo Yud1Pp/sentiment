@@ -25,7 +25,7 @@ def scrape_title(url):
     
     test = driver.find_element(By.CSS_SELECTOR, 'span[id="select2-slsposition-container"]').get_attribute("outerHTML")
     driver.quit()
-    return title
+    return test
 
 st.title("🔎 Streamlit + Selenium (Chromium)")
 
