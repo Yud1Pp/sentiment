@@ -3,6 +3,8 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import time
 import os
 
@@ -22,6 +24,9 @@ def take_screenshot(url, filename="screenshot.png"):
     driver = create_driver()
     driver.get(url)
     time.sleep(2)
+    WebDriverWait(driver, 5).until(
+        EC.presence_of_element_located((By.CLASS_NAME, "css-11hzwo5"))
+    ).find_element(By.TAG_NAME, "button").click()
 
     # Simpan screenshot ke file
     driver.save_screenshot(filename)
