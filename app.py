@@ -23,7 +23,7 @@ def scrape_title(url):
     driver.get(url)
     time.sleep(2)
     
-    test = driver.find_element(By.CSS_SELECTOR, 'span[id="select2-slsposition-container"]')
+    test = driver.find_element(By.CSS_SELECTOR, 'span[id="select2-slsposition-container"]').get_attribute("outerHTML")
     driver.quit()
     return title
 
