@@ -14,10 +14,7 @@ stemmer_factory = StemmerFactory()
 stemmer = stemmer_factory.create_stemmer()
 
 def preprocess_text(text_series):
-    """
-    Preprocessing teks: menghapus stopwords, stemming, dan membersihkan teks.
-    """
-    # Hilangkan NA, ubah ke lowercase, dan hapus karakter khusus
+    # Preprocessing teks: menghapus stopwords, stemming, dan membersihkan teks.
     cleaned_text = text_series.dropna().str.lower().apply(lambda x: re.sub(r'[^a-zA-Z\s]', '', x))
     
     # Hapus stopwords dan lakukan stemming
@@ -26,9 +23,6 @@ def preprocess_text(text_series):
     return cleaned_text
 
 def perform_lda(texts, num_topics=5, num_words=10):
-    """
-    Melakukan Latent Dirichlet Allocation (LDA) untuk mengidentifikasi topik dari teks.
-    """
     # Vektorisasi teks
     vectorizer = CountVectorizer(stop_words=stopwords)
     dtm = vectorizer.fit_transform(texts)
@@ -47,9 +41,6 @@ def perform_lda(texts, num_topics=5, num_words=10):
     return topics
 
 def display_topics(topics):
-    """
-    Menampilkan topik-topik yang ditemukan oleh LDA
-    """
     st.markdown("### 🔍 Topik LDA dari Komentar")
     for topic_name, words in topics:
         st.markdown(f"**{topic_name}**: {', '.join(words)}")

@@ -8,9 +8,10 @@ import time
 import streamlit as st
 
 class TokopediaScraper:
-    def __init__(self, url, max_per_rating=50):
+    def __init__(self, url, servicePath, max_per_rating=50):
         self.url = url
         self.max_per_rating = max_per_rating
+        self.servicePath = servicePath
         self.isCheckbox = False
         self.cntCheckDis = 0
 
@@ -21,7 +22,7 @@ class TokopediaScraper:
         options.add_argument("--disable-dev-shm-usage")
         options.add_argument("--disable-blink-features=AutomationControlled")
         options.add_argument("user-agent=Mozilla/5.0")
-        service = Service("chromedriver.exe")
+        service = Service(self.servicePath)
         return webdriver.Chrome(service=service, options=options)
     
     """
@@ -105,7 +106,7 @@ class TokopediaScraper:
                         tombol_terbaru.click()
             except:
                 print("Tombol urutkan tidak ditemukan atau tidak dapat diklik.")
-# https://www.tokopedia.com/belle-baby-store/sgm-ananda-sgm-eksplor-1-sgm-eksplor-3-vanila-madu-900gr-belle-baby-store-bubuk-bunda-1730453605551277186?t_id=1746500217695&t_st=6&t_pp=homepage&t_efo=pure_goods_card&t_ef=homepage&t_sm=rec_homepage_outer_flow&t_spt=homepage
+
             # Mulai scraping review per rating
             for rating in [5, 4, 3, 2, 1]:
                 checkbox = self.click_checkbox(driver, rating)
